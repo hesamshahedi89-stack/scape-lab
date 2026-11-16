@@ -1,0 +1,151 @@
+.screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.25rem 1rem 1rem;
+}
+
+.panel {
+  width: 100%;
+  max-width: 560px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  text-align: center;
+  animation: rise 0.7s ease both;
+}
+
+.flask {
+  font-size: 3.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 14px rgba(57, 255, 20, 0.6));
+  animation: float 4s ease-in-out infinite;
+}
+
+.title {
+  margin: 0.6rem 0 0;
+  font-size: clamp(1.6rem, 6vw, 2.3rem);
+  line-height: 1.4;
+  color: var(--neon);
+  text-shadow: 0 0 18px rgba(57, 255, 20, 0.6);
+  animation: flicker 6s ease-in-out infinite;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.story {
+  margin: 1.1rem 0 0.8rem;
+  line-height: 2;
+}
+
+.rules {
+  list-style: none;
+  margin: 0 0 1.3rem;
+  padding: 0.8rem 1rem;
+  text-align: start;
+  font-size: 0.95rem;
+  color: var(--muted);
+  background: rgba(57, 255, 20, 0.04);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.label {
+  text-align: start;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--text);
+  font-size: 1.1rem; /* حداقل ۱۶px تا مرورگر iOS زوم نکند */
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+  color: rgba(127, 163, 138, 0.6);
+}
+
+.input:focus {
+  border-color: var(--neon);
+  box-shadow: 0 0 0 3px rgba(57, 255, 20, 0.16);
+}
+
+.start {
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+}
+
+.admin {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 28px;
+}
+
+.adminBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(127, 163, 138, 0.45);
+  font-size: 0.78rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.adminBtn:hover,
+.adminBtn:focus-visible {
+  color: var(--danger);
+}
+
+.adminMsg {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.75; }
+  94% { opacity: 1; }
+  96% { opacity: 0.85; }
+  97% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .flask,
+  .title {
+    animation: none;
+  }
+}

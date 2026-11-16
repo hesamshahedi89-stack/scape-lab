@@ -1,0 +1,104 @@
+/* متغیرهای رنگ و استایل‌های پایه‌ی سراسری (با :global در CSS Module) */
+
+:global(:root) {
+  --bg: #060a09;
+  --panel: rgba(12, 20, 18, 0.88);
+  --line: rgba(57, 255, 20, 0.22);
+  --neon: #39ff14;
+  --neon-soft: rgba(57, 255, 20, 0.12);
+  --neon-glow: 0 0 14px rgba(57, 255, 20, 0.55);
+  --text: #d9f5df;
+  --muted: #7fa38a;
+  --danger: #ff4d6d;
+  --warn: #ffd166;
+  --font: 'Vazirmatn', 'Vazir', 'IRANSans', Tahoma, 'Segoe UI', system-ui, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Courier New', monospace, var(--font);
+}
+
+:global(*),
+:global(*::before),
+:global(*::after) {
+  box-sizing: border-box;
+}
+
+:global(html),
+:global(body) {
+  margin: 0;
+  padding: 0;
+}
+
+:global(body) {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.8;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:global(button),
+:global(input) {
+  font-family: inherit;
+}
+
+:global(#root) {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(57, 255, 20, 0.1), transparent 55%),
+    radial-gradient(ellipse at 50% 120%, rgba(0, 180, 120, 0.08), transparent 55%),
+    var(--bg);
+}
+
+/* شبکه‌ی محو پس‌زمینه */
+.app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(57, 255, 20, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 25%, transparent 75%);
+  animation: drift 40s linear infinite;
+}
+
+/* مه‌ی ملایم */
+.app::after {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 40%, rgba(57, 255, 20, 0.05), transparent 40%);
+  animation: fog 14s ease-in-out infinite alternate;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes drift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 44px 44px, 44px 44px; }
+}
+
+@keyframes fog {
+  from { transform: translate3d(-4%, 0, 0); opacity: 0.6; }
+  to { transform: translate3d(6%, 3%, 0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app::before,
+  .app::after {
+    animation: none;
+  }
+}

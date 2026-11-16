@@ -1,0 +1,67 @@
+.lock {
+  position: relative;
+  flex: none;
+  width: 46px;
+  height: 56px;
+  filter: drop-shadow(0 0 6px rgba(57, 255, 20, 0.35));
+  transition: filter 0.4s ease;
+}
+
+.shackle {
+  position: absolute;
+  top: 0;
+  left: 9px;
+  width: 28px;
+  height: 30px;
+  border: 5px solid var(--neon);
+  border-bottom: none;
+  border-radius: 16px 16px 0 0;
+  transform-origin: 100% 100%;
+  transition: transform 0.55s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 46px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--neon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keyhole {
+  width: 8px;
+  height: 14px;
+  border-radius: 4px 4px 2px 2px;
+  background: #04120a;
+}
+
+.open {
+  filter: drop-shadow(0 0 16px rgba(57, 255, 20, 0.95));
+}
+
+.open .shackle {
+  transform: translateY(-9px) rotate(28deg);
+}
+
+.open .body {
+  animation: glow 0.9s ease-out;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.9); }
+  100% { box-shadow: 0 0 0 22px rgba(57, 255, 20, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shackle {
+    transition: none;
+  }
+  .open .body {
+    animation: none;
+  }
+}
